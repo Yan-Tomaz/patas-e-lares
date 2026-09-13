@@ -171,7 +171,9 @@
                     <div class="campo-com-botao">
                         <input type="text" id="cep" name="cep" required inputmode="numeric" maxlength="9"
                             pattern="\d{5}-\d{3}" placeholder="00000-000" />
-                        <button type="button" id="botaoBuscarCep" aria-label="Buscar endereço pelo CEP">🔍</button>
+                        <button type="button" id="botaoBuscarCep" aria-label="Buscar endereço pelo CEP">
+                            <span aria-hidden="true">🔍</span>
+                        </button>
                     </div>
                     <p class="mensagem-erro">Informe um CEP válido (formato 00000-000).</p>
                 </div>
