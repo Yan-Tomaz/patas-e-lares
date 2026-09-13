@@ -26,8 +26,15 @@
 
             <ul id="menuNav">
                 <li><a href="index.html">Início</a></li>
-                <li><a href="projetos.html" aria-current="page">Nossos Projetos</a></li>
-                <li><a href="cadastros.html">Quero Ajudar</a></li>
+                <li class="tem-dropdown">
+                    <a href="projetos.html" aria-current="page">Nossos Projetos</a>
+                    <ul class="dropdown">
+                        <li><a href="projetos.html#resgate">Resgate</a></li>
+                        <li><a href="projetos.html#castracao">Castramóvel</a></li>
+                        <li><a href="projetos.html#adocao">Feira de Adoção</a></li>
+                    </ul>
+                </li>
+                <li><a href="cadastro.html">Quero Ajudar</a></li>
             </ul>
         </nav>
     </header>
@@ -42,7 +49,7 @@
         <section class="lista-projetos">
             <h2 class="oculto-visualmente">Lista de projetos</h2>
 
-            <article class="projeto">
+            <article class="projeto" id="resgate">
                 <img src="img/resgate.jpg" alt="Voluntário segurando um filhote resgatado embrulhado em uma toalha" />
                 <span class="badge">Plantão 24h</span>
                 <h2>Resgate de Emergência</h2>
@@ -56,7 +63,7 @@
                 </ul>
             </article>
 
-            <article class="projeto">
+            <article class="projeto" id="castracao">
                 <img src="img/castracao.jpg"
                     alt="Unidade móvel de atendimento veterinário estacionada, usada nos mutirões de castração" />
                 <span class="badge">Um sábado por mês</span>
@@ -71,7 +78,7 @@
                 </ul>
             </article>
 
-            <article class="projeto">
+            <article class="projeto" id="adocao">
                 <img src="img/adocao.jpg"
                     alt="Filhotes resgatados aguardando em recinto improvisado antes da feira de adoção" />
                 <span class="badge">A cada 15 dias</span>
