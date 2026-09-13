@@ -215,7 +215,7 @@ nav ul a[aria-current="page"] {
 }
 
 .cta {
-  background-color: var(--cor-apoio);
+  background-color: #4A3B2E;
   text-align: center;
   padding: 56px 24px;
 }
