@@ -792,3 +792,9 @@ button[type="submit"]:disabled {
     padding: 10px 12px;
   }
 }
+
+.nav-direita {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
