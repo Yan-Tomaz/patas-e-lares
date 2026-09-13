@@ -17,6 +17,12 @@
   --cor-sucesso: #4C7A5C;
   --cor-erro: #C0392B;
 
+  /* Cor de fundo para elementos com texto branco em cima
+     (botões, CTA, badge) — verificada em 5.1:1 de contraste
+     com branco, acima do mínimo AA de 4.5:1 */
+  --cor-cta: #B84D1D;
+  --cor-cta-hover: #8F3C15;
+
   /* Escala tipográfica (5 níveis) */
   --texto-xl: 2.6rem;
   --texto-lg: 1.8rem;
@@ -137,7 +143,7 @@ nav ul a[aria-current="page"] {
 .hero-texto a,
 .cta a {
   display: inline-block;
-  background-color: var(--cor-primaria);
+  background-color: var(--cor-cta);
   color: white;
   padding: 14px 28px;
   border-radius: 30px;
@@ -148,13 +154,13 @@ nav ul a[aria-current="page"] {
 
 .hero-texto a:hover,
 .cta a:hover {
-  background-color: var(--cor-primaria-escura);
+  background-color: var(--cor-cta-hover);
 }
 
 .hero-texto a:active,
 .cta a:active {
   transform: scale(0.97);
-  background-color: var(--cor-primaria-escura);
+  background-color: var(--cor-cta-hover);
 }
 
 .sobre {
@@ -293,7 +299,7 @@ footer address a {
 
 .badge {
   display: inline-block;
-  background-color: var(--cor-primaria);
+  background-color: var(--cor-cta);
   color: white;
   font-size: 0.75rem;
   font-weight: 700;
@@ -412,7 +418,7 @@ legend {
 
 button[type="submit"] {
   width: 100%;
-  background-color: var(--cor-primaria);
+  background-color: var(--cor-cta);
   color: white;
   border: none;
   padding: 16px;
@@ -425,7 +431,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: var(--cor-primaria-escura);
+  background-color: var(--cor-cta-hover);
 }
 
 button[type="submit"]:active {
@@ -791,10 +797,4 @@ button[type="submit"]:disabled {
   .campo select {
     padding: 10px 12px;
   }
-}
-
-.nav-direita {
-  display: flex;
-  align-items: center;
-  gap: 28px;
 }
