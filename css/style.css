@@ -33,6 +33,19 @@
   --espaco-6: 60px;
 }
 
+[data-tema="escuro"] {
+  --cor-fundo: #1F1B16;
+  --cor-texto: #F0E9DE;
+  --cor-primaria: #F2794B;
+  --cor-primaria-escura: #D9612F;
+  --cor-apoio: #D9CDBB;
+  --cor-apoio-clara: #A99C87;
+  --cor-borda: #3A332B;
+  --cor-branco: #2A2420;
+  --cor-sucesso: #7FCB9B;
+  --cor-erro: #E88686;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -44,6 +57,7 @@ body {
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
   line-height: 1.6;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 header {
@@ -181,7 +195,7 @@ nav ul a[aria-current="page"] {
 }
 
 .pilar {
-  background-color: white;
+  background-color: var(--cor-branco);
   border: 2px solid var(--cor-borda);
   border-radius: 16px;
   padding: 28px;
@@ -243,7 +257,7 @@ footer address a {
 }
 
 .projeto {
-  background-color: white;
+  background-color: var(--cor-branco);
   border: 2px solid var(--cor-borda);
   border-radius: 16px;
   overflow: hidden;
@@ -308,7 +322,7 @@ form {
   max-width: 600px;
   margin: 0 auto 60px;
   padding: 32px;
-  background-color: white;
+  background-color: var(--cor-branco);
   border: 2px solid var(--cor-borda);
   border-radius: 16px;
 }
@@ -424,7 +438,8 @@ button[type="submit"]:disabled {
   cursor: not-allowed;
 }
 
-#botaoMenu {
+#botaoMenu,
+#botaoTema {
   display: none;
   background: none;
   border: 2px solid var(--cor-borda);
@@ -438,12 +453,20 @@ button[type="submit"]:disabled {
   transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-#botaoMenu:hover {
+#botaoTema {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#botaoMenu:hover,
+#botaoTema:hover {
   background-color: var(--cor-borda);
   box-shadow: 0 3px 10px rgba(59, 47, 42, 0.22);
 }
 
-#botaoMenu:active {
+#botaoMenu:active,
+#botaoTema:active {
   transform: scale(0.95);
 }
 
@@ -587,6 +610,89 @@ button[type="submit"]:disabled {
   to { transform: translateX(120%); opacity: 0; }
 }
 
+.tem-dropdown {
+  position: relative;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--cor-branco);
+  border: 2px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 8px 0;
+  min-width: 180px;
+  list-style: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tem-dropdown:hover .dropdown {
+  display: block;
+}
+
+.dropdown li a {
+  display: block;
+  padding: 10px 16px;
+  font-weight: 500;
+}
+
+.dropdown li a:hover {
+  background-color: var(--cor-fundo);
+  color: var(--cor-primaria);
+}
+
+#projetosContainer {
+  display: contents;
+}
+
+.registro-colaboradores {
+  max-width: 600px;
+  margin: 0 auto 60px;
+}
+
+.registro-colaboradores h2 {
+  color: var(--cor-apoio);
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.registro-colaboradores .hint {
+  font-size: 0.85rem;
+  color: var(--cor-apoio-clara);
+  margin-bottom: 16px;
+}
+
+.registro-vazio {
+  font-style: italic;
+  color: var(--cor-apoio-clara);
+}
+
+.registro-lista {
+  list-style: none;
+}
+
+.registro-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--cor-branco);
+  border: 2px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+
+.registro-item button {
+  background: none;
+  border: none;
+  color: var(--cor-erro);
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-decoration: underline;
+}
+
 /* =========================================================
    BREAKPOINTS RESPONSIVOS (5 pontos de quebra)
    ========================================================= */
@@ -685,87 +791,4 @@ button[type="submit"]:disabled {
   .campo select {
     padding: 10px 12px;
   }
-}
-
-.tem-dropdown {
-  position: relative;
-}
-
-.dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  border: 2px solid var(--cor-borda);
-  border-radius: 10px;
-  padding: 8px 0;
-  min-width: 180px;
-  list-style: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.tem-dropdown:hover .dropdown {
-  display: block;
-}
-
-.dropdown li a {
-  display: block;
-  padding: 10px 16px;
-  font-weight: 500;
-}
-
-.dropdown li a:hover {
-  background-color: var(--cor-fundo);
-  color: var(--cor-primaria);
-}
-
-#projetosContainer {
-  display: contents;
-}
-
-.registro-colaboradores {
-  max-width: 600px;
-  margin: 0 auto 60px;
-}
-
-.registro-colaboradores h2 {
-  color: var(--cor-apoio);
-  font-size: 1.3rem;
-  margin-bottom: 4px;
-}
-
-.registro-colaboradores .hint {
-  font-size: 0.85rem;
-  color: var(--cor-apoio-clara);
-  margin-bottom: 16px;
-}
-
-.registro-vazio {
-  font-style: italic;
-  color: var(--cor-apoio-clara);
-}
-
-.registro-lista {
-  list-style: none;
-}
-
-.registro-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  border: 2px solid var(--cor-borda);
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin-bottom: 10px;
-}
-
-.registro-item button {
-  background: none;
-  border: none;
-  color: var(--cor-erro);
-  cursor: pointer;
-  font-size: 0.85rem;
-  text-decoration: underline;
 }
