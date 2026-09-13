@@ -19,32 +19,53 @@
 
     <header>
         <nav>
-            <a href="index.html">🐾 Patas & Lares</a>
+            <a href="#/">🐾 Patas & Lares</a>
 
             <button id="botaoMenu" aria-expanded="false" aria-controls="menuNav" aria-label="Abrir menu">
                 ☰
             </button>
 
             <ul id="menuNav">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="projetos.html">Nossos Projetos</a></li>
-                <li><a href="cadastros.html">Quero Ajudar</a></li>
+                <li><a href="#/">Início</a></li>
+                <li class="tem-dropdown">
+                    <a href="#/projetos">Nossos Projetos</a>
+                    <ul class="dropdown">
+                        <li><a href="#/projetos">Resgate</a></li>
+                        <li><a href="#/projetos">Castramóvel</a></li>
+                        <li><a href="#/projetos">Feira de Adoção</a></li>
+                    </ul>
+                </li>
+                <li><a href="#/cadastro">Quero Ajudar</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <main id="app">
+        <!-- Conteúdo injetado dinamicamente pelo router em script.js -->
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Patas & Lares. Projeto acadêmico — Experiência Prática I, Desenvolvimento Front-end.</p>
+        <address>
+            Fale conosco: <a href="mailto:contato@patasielares.org.br">contato@patasielares.org.br</a> · (11) 4002-8922
+        </address>
+    </footer>
+
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <!-- ==================== TEMPLATES DAS ROTAS ==================== -->
+
+    <template id="template-home">
         <section class="hero">
             <div class="hero-texto">
                 <h1>Cada resgate é um novo começo.</h1>
                 <p>
-                    A Patas & Lares resgata, cuida e encontra novos lares para animais
+                    A Patas &amp; Lares resgata, cuida e encontra novos lares para animais
                     abandonados. Também fazemos castração popular pra evitar que essa
                     história se repita.
                 </p>
-                <a href="cadastros.html">Quero adotar ou ajudar</a>
+                <a href="#/cadastro">Quero adotar ou ajudar</a>
             </div>
-
             <img src="img/hero-cachorro.jpg" alt="Cachorro resgatado sendo acariciado por um voluntário" />
         </section>
 
@@ -80,16 +101,198 @@
         <section class="cta">
             <h2>Pronto pra mudar a vida de um animal?</h2>
             <p>Adote, doe ou seja voluntário — toda ajuda encontra um lar.</p>
-            <a href="cadastros.html">Fazer meu cadastro</a>
+            <a href="#/cadastro">Fazer meu cadastro</a>
         </section>
-    </main>
+    </template>
 
-    <footer>
-        <p>&copy; 2026 Patas & Lares. Projeto acadêmico — Experiência Prática I, Desenvolvimento Front-end.</p>
-        <address>
-            Fale conosco: <a href="mailto:contato@patasielares.org.br">contato@patasielares.org.br</a> · (11) 4002-8922
-        </address>
-    </footer>
+    <template id="template-projetos">
+        <section class="cabecalho-pagina">
+            <h1>O que fazemos, na prática</h1>
+            <p>Cada projeto abaixo depende de voluntários e doações pra continuar.</p>
+        </section>
+
+        <section class="lista-projetos">
+            <h2 class="oculto-visualmente">Lista de projetos</h2>
+
+            <article class="projeto" id="resgate">
+                <img src="img/resgate.jpg" alt="Voluntário segurando um filhote resgatado embrulhado em uma toalha" />
+                <span class="badge">Plantão 24h</span>
+                <h2>Resgate de Emergência</h2>
+                <p>
+                    Atendemos denúncias de maus-tratos e abandono, com equipe própria e
+                    parceria com clínicas veterinárias da região.
+                </p>
+                <ul>
+                    <li>120 resgates em 2025</li>
+                    <li>Voluntários: motorista e apoio de campo</li>
+                </ul>
+            </article>
+
+            <article class="projeto" id="castracao">
+                <img src="img/castracao.jpg"
+                    alt="Unidade móvel de atendimento veterinário estacionada, usada nos mutirões de castração" />
+                <span class="badge">Um sábado por mês</span>
+                <h2>Castramóvel</h2>
+                <p>
+                    Mutirões mensais de castração gratuita em bairros de maior
+                    vulnerabilidade, com unidade móvel equipada.
+                </p>
+                <ul>
+                    <li>340 castrações em 2025</li>
+                    <li>Voluntários: recepção e triagem</li>
+                </ul>
+            </article>
+
+            <article class="projeto" id="adocao">
+                <img src="img/adocao.jpg"
+                    alt="Filhotes resgatados aguardando em recinto improvisado antes da feira de adoção" />
+                <span class="badge">A cada 15 dias</span>
+                <h2>Feira de Adoção</h2>
+                <p>
+                    Eventos quinzenais em praças e shoppings parceiros, com
+                    acompanhamento pós-adoção pelas primeiras semanas.
+                </p>
+                <ul>
+                    <li>95 adoções em 2025</li>
+                    <li>Voluntários: cuidado com os animais no dia do evento</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="cta">
+            <h2>Tem uma habilidade que possa ensinar?</h2>
+            <p>Professores, cozinheiros, motoristas — sempre há um projeto que combina com o que você sabe fazer.</p>
+            <a href="#/cadastro">Fazer meu cadastro</a>
+        </section>
+    </template>
+
+    <template id="template-cadastro">
+        <h1>Vamos começar essa parceria</h1>
+        <p>Preencha os dados abaixo para se cadastrar como voluntário(a) ou doador(a).</p>
+
+        <form id="formCadastro" novalidate>
+            <div class="aviso-sucesso" id="avisoSucesso" role="status" aria-live="polite">
+                Cadastro realizado com sucesso! Obrigado por fazer parte da Patas &amp; Lares. 🐾
+            </div>
+
+            <fieldset>
+                <legend>Dados pessoais</legend>
+
+                <div class="campo">
+                    <label for="nome">Nome completo *</label>
+                    <input type="text" id="nome" name="nome" required minlength="3" placeholder="Seu nome completo" />
+                    <p class="mensagem-erro">Informe seu nome completo (mínimo 3 letras).</p>
+                </div>
+
+                <div class="campo">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="email" required placeholder="voce@email.com" />
+                    <p class="mensagem-erro">Informe um e-mail válido.</p>
+                </div>
+
+                <div class="campo">
+                    <label for="cpf">CPF *</label>
+                    <input type="text" id="cpf" name="cpf" required inputmode="numeric" maxlength="14"
+                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" />
+                    <p class="mensagem-erro">CPF inválido. Confira os números digitados.</p>
+                </div>
+
+                <div class="campo">
+                    <label for="telefone">Telefone *</label>
+                    <input type="tel" id="telefone" name="telefone" required inputmode="numeric" maxlength="15"
+                        pattern="\(\d{2}\) \d{4,5}-\d{4}" placeholder="(00) 00000-0000" />
+                    <p class="mensagem-erro">Informe um telefone válido com DDD.</p>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Endereço</legend>
+
+                <div class="campo">
+                    <label for="cep">CEP *</label>
+                    <div class="campo-com-botao">
+                        <input type="text" id="cep" name="cep" required inputmode="numeric" maxlength="9"
+                            pattern="\d{5}-\d{3}" placeholder="00000-000" />
+                        <button type="button" id="botaoBuscarCep" aria-label="Buscar endereço pelo CEP">🔍</button>
+                    </div>
+                    <p class="mensagem-erro">Informe um CEP válido (formato 00000-000).</p>
+                </div>
+
+                <div class="campo">
+                    <label for="rua">Rua *</label>
+                    <input type="text" id="rua" name="rua" required autocomplete="off"
+                        placeholder="Preenchido automaticamente pelo CEP" />
+                    <p class="mensagem-erro">Informe a rua.</p>
+                </div>
+
+                <div class="campo">
+                    <label for="numero">Número *</label>
+                    <input type="text" id="numero" name="numero" required placeholder="123" />
+                    <p class="mensagem-erro">Informe o número.</p>
+                </div>
+
+                <div class="campo">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" id="complemento" name="complemento" placeholder="Apto, bloco, etc. (opcional)" />
+                </div>
+
+                <div class="campo">
+                    <label for="bairro">Bairro *</label>
+                    <input type="text" id="bairro" name="bairro" required autocomplete="off"
+                        placeholder="Preenchido automaticamente pelo CEP" />
+                    <p class="mensagem-erro">Informe o bairro.</p>
+                </div>
+
+                <div class="campo">
+                    <label for="cidade">Cidade *</label>
+                    <input type="text" id="cidade" name="cidade" required autocomplete="off"
+                        placeholder="Preenchida automaticamente pelo CEP" />
+                    <p class="mensagem-erro">Informe a cidade.</p>
+                </div>
+
+                <div class="campo">
+                    <label for="uf">UF *</label>
+                    <input type="text" id="uf" name="uf" required maxlength="2" autocomplete="off" placeholder="SP" />
+                    <p class="mensagem-erro">Informe a UF (2 letras).</p>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Como você quer ajudar?</legend>
+
+                <div class="campo">
+                    <p>Tipo de colaboração *</p>
+                    <label>
+                        <input type="radio" name="tipo" value="voluntario" required checked />
+                        Voluntário(a)
+                    </label>
+                    <label>
+                        <input type="radio" name="tipo" value="doador" />
+                        Doador(a)
+                    </label>
+                </div>
+
+                <div class="campo" id="campoArea">
+                    <label for="area">Área de interesse</label>
+                    <select id="area" name="area">
+                        <option value="resgate">Resgate</option>
+                        <option value="castracao">Castramóvel</option>
+                        <option value="adocao">Feira de Adoção</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label>
+                        <input type="checkbox" id="aceite" name="aceite" required />
+                        Concordo em ser contatado(a) pela Patas &amp; Lares por e-mail ou telefone. *
+                    </label>
+                    <p class="mensagem-erro">É preciso aceitar o contato para concluir o cadastro.</p>
+                </div>
+            </fieldset>
+
+            <button type="submit">Confirmar cadastro</button>
+        </form>
+    </template>
 
 </body>
 
