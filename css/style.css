@@ -719,3 +719,7 @@ button[type="submit"]:disabled {
   background-color: var(--cor-fundo);
   color: var(--cor-primaria);
 }
+
+#projetosContainer {
+  display: contents;
+}
