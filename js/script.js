@@ -128,12 +128,61 @@ function renderizarProjetos() {
 }
 
 // =========================================================
+// LOCALSTORAGE: persistência dos cadastros no navegador
+// =========================================================
+const CHAVE_STORAGE = 'patas_e_lares_cadastros';
+
+function obterCadastrosSalvos() {
+  const dados = localStorage.getItem(CHAVE_STORAGE);
+  return dados ? JSON.parse(dados) : [];
+}
+
+function salvarCadastro(cadastro) {
+  const lista = obterCadastrosSalvos();
+  lista.unshift(cadastro);
+  localStorage.setItem(CHAVE_STORAGE, JSON.stringify(lista));
+}
+
+function removerCadastro(id) {
+  const lista = obterCadastrosSalvos().filter(function (c) { return c.id !== id; });
+  localStorage.setItem(CHAVE_STORAGE, JSON.stringify(lista));
+  renderizarRegistro();
+}
+
+function renderizarRegistro() {
+  const registroLista = document.getElementById('registroLista');
+  const registroVazio = document.getElementById('registroVazio');
+  if (!registroLista) return;
+
+  const lista = obterCadastrosSalvos();
+
+  if (lista.length === 0) {
+    registroVazio.style.display = 'block';
+    registroLista.innerHTML = '';
+    return;
+  }
+
+  registroVazio.style.display = 'none';
+
+  registroLista.innerHTML = lista.map(function (c) {
+    return `
+      <li class="registro-item">
+        <span>${c.nome} — <strong>${c.tipo === 'voluntario' ? 'Voluntário(a)' : 'Doador(a)'}</strong></span>
+        <button type="button" onclick="removerCadastro(${c.id})">Remover</button>
+      </li>
+    `;
+  }).join('');
+}
+
+// =========================================================
 // INICIALIZAÇÃO ESPECÍFICA DA ROTA /cadastro
 // Precisa ser chamada TODA VEZ que essa rota é renderizada,
 // porque os elementos do formulário são recriados a cada
 // injeção do template no #app.
 // =========================================================
 function initPaginaCadastro() {
+  renderizarRegistro();
+
   const camposTipo = document.querySelectorAll('input[name="tipo"]');
   const campoArea = document.getElementById('campoArea');
   const campoTelefone = document.getElementById('telefone');
@@ -264,10 +313,18 @@ function initPaginaCadastro() {
         return;
       }
 
+      const novoCadastro = {
+        id: Date.now(),
+        nome: document.getElementById('nome').value,
+        tipo: formCadastro.querySelector('input[name="tipo"]:checked').value
+      };
+      salvarCadastro(novoCadastro);
+
       formCadastro.reset();
       campoArea.classList.remove('escondido');
       avisoSucesso.classList.add('visivel');
       mostrarToast('Cadastro salvo com sucesso!', 'sucesso');
+      renderizarRegistro();
     });
   }
 }
