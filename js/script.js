@@ -204,43 +204,22 @@ function initPaginaCadastro() {
     });
   }
 
-  // ----- Máscara de CPF -----
+  // ----- Máscaras via biblioteca IMask.js -----
   if (campoCpf) {
-    campoCpf.addEventListener('input', function () {
-      let valor = apenasNumeros(campoCpf.value).slice(0, 11);
-      valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
-      valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
-      valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-      campoCpf.value = valor;
-    });
+    IMask(campoCpf, { mask: '000.000.000-00' });
   }
 
-  // ----- Máscara de telefone -----
   if (campoTelefone) {
-    campoTelefone.addEventListener('input', function () {
-      let valor = apenasNumeros(campoTelefone.value).slice(0, 11);
-
-      if (valor.length > 10) {
-        valor = valor.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
-      } else if (valor.length > 5) {
-        valor = valor.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
-      } else if (valor.length > 2) {
-        valor = valor.replace(/(\d{2})(\d{0,5})/, '($1) $2');
-      } else {
-        valor = valor.replace(/(\d{0,2})/, '($1');
-      }
-
-      campoTelefone.value = valor;
+    IMask(campoTelefone, {
+      mask: [
+        { mask: '(00) 0000-0000' },
+        { mask: '(00) 00000-0000' }
+      ]
     });
   }
 
-  // ----- Máscara de CEP -----
   if (campoCep) {
-    campoCep.addEventListener('input', function () {
-      let valor = apenasNumeros(campoCep.value).slice(0, 8);
-      valor = valor.replace(/(\d{5})(\d{1,3})$/, '$1-$2');
-      campoCep.value = valor;
-    });
+    IMask(campoCep, { mask: '00000-000' });
   }
 
   // ----- Busca de endereço via ViaCEP -----
