@@ -94,3 +94,31 @@ Abordagem *desktop-first*, com um breakpoint principal em `768px`:
 - Adicionar paginação/filtro caso a lista de projetos cresça.
 - Validar o CEP também contra a resposta da API antes de liberar o envio do
   formulário (hoje a busca é manual, pelo botão).
+
+  ## Instalação local
+
+Pré-requisito: [Node.js](https://nodejs.org) 20 ou superior.
+
+```bash
+git clone https://github.com/Yan-Tomaz/patas-e-lares.git
+cd patas-e-lares
+npm install
+npm run dev
+```
+
+| Comando | O que faz |
+|---|---|
+| `npm run dev` | Servidor de desenvolvimento com recarregamento automático |
+| `npm run build` | Gera a pasta `dist/` com CSS e JS minificados |
+| `npm run preview` | Testa localmente a versão de produção |
+| `npm run imagens` | Converte as imagens de `public/img` para WebP (400, 800 e 1200px) |
+
+O deploy é automático: a cada push na `main`, o GitHub Actions roda o build e publica o `dist/` no GitHub Pages.
+
+## Controle de versão
+
+- **GitFlow:** `main` guarda as versões publicadas, `develop` é a branch de integração, e cada mudança nasce em uma branch `feat/` ou `fix/` a partir da `develop`.
+- **Conventional Commits:** as mensagens usam os prefixos `feat:`, `fix:`, `perf:`, `ci:` e `chore:`.
+- **Versionamento Semântico:** cada merge na `main` recebe uma tag `MAJOR.MINOR.PATCH` (`v1.1.0`, `v1.2.0`, `v1.3.0`).
+
+> Nota: o fluxo formal foi adotado durante o desenvolvimento, então os primeiros commits do histórico não seguem esse padrão.
