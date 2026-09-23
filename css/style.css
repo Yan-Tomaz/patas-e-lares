@@ -821,3 +821,22 @@ button[type="submit"]:disabled {
     padding: var(--espaco-1);
   }
 }
+
+.hero picture {
+  flex: 1;
+}
+
+.hero img {
+  display: block;
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.projeto picture {
+  display: block;
+}
+
+.projeto img {
+  display: block;
+}

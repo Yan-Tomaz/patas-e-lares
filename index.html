@@ -68,7 +68,13 @@
                 </p>
                 <a href="#/cadastro">Quero adotar ou ajudar</a>
             </div>
-            <img src="img/hero-cachorro.jpg" alt="Cachorro resgatado sendo acariciado por um voluntário" />
+            <picture>
+                <source type="image/webp" srcset="img/hero-cachorro-400.webp 400w,
+                img/hero-cachorro-800.webp 800w,
+                img/hero-cachorro-1200.webp 1200w" sizes="(max-width: 768px) 100vw, 600px" />
+                <img src="img/hero-cachorro.jpg" alt="Cachorro resgatado sendo acariciado por um voluntário"
+                    fetchpriority="high" />
+            </picture>
         </section>
 
         <section class="sobre">
