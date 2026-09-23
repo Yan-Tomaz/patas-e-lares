@@ -44,8 +44,17 @@ function renderizarRota() {
     initPaginaCadastro();
   }
 
-  if (caminho === '/projetos') {
+   if (caminho === '/projetos') {
     renderizarProjetos();
+
+    // Se o link clicado tinha um destino específico (?destino=id), rola até lá
+    const destino = window.location.hash.split('?destino=')[1];
+    if (destino) {
+      setTimeout(function () {
+        const elemento = document.getElementById(destino);
+        if (elemento) elemento.scrollIntoView({ behavior: 'smooth' });
+      }, 50);
+    }
   }
 
   window.scrollTo(0, 0);
