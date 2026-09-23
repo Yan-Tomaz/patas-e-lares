@@ -34,6 +34,20 @@ export const projetosData = [
   }
 ];
 
+// Larguras geradas pelo script scripts/otimizar-imagens.js
+const LARGURAS_WEBP = [400, 800, 1200];
+
+// Monta o srcset a partir do caminho do JPG:
+// 'img/resgate.jpg' → 'img/resgate-400.webp 400w, img/resgate-800.webp 800w, ...'
+function montarSrcsetWebp(caminhoJpg) {
+  const base = caminhoJpg.replace(/\.(jpe?g|png)$/i, '');
+  return LARGURAS_WEBP
+    .map(function (largura) {
+      return base + '-' + largura + '.webp ' + largura + 'w';
+    })
+    .join(', ');
+}
+
 export function renderizarProjetos() {
   const container = document.getElementById('projetosContainer');
   if (!container) return;
@@ -45,7 +59,13 @@ export function renderizarProjetos() {
 
     return `
       <article class="projeto" id="${projeto.id}">
-        <img src="${projeto.img}" alt="${projeto.alt}" />
+        <picture>
+          <source
+            type="image/webp"
+            srcset="${montarSrcsetWebp(projeto.img)}"
+            sizes="(max-width: 768px) 100vw, (max-width: 992px) 50vw, 350px" />
+          <img src="${projeto.img}" alt="${projeto.alt}" loading="lazy" />
+        </picture>
         <span class="badge">${projeto.badge}</span>
         <h2>${projeto.titulo}</h2>
         <p>${projeto.descricao}</p>
